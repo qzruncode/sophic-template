@@ -8,16 +8,16 @@ import Test2 from './test2';
 const createRouter = props => {
   return createBrowserRouter([
     {
-      path: '/',
+      path: '/sub',
       element: <App appPubSub={props.appPubSub} />,
       errorElement: <ErrorPage />,
       children: [
         {
-          path: "/data/test1",
+          path: "test1",
           element: <Test1 />,
         },
         {
-          path: "/data/test2",
+          path: "test2",
           element: <Test2 />,
         },
       ],

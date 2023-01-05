@@ -1,18 +1,18 @@
 import * as React from 'react';
 import ReactDOM from "react-dom/client";
-import { handleHasMaster } from 'sophic';
+import { Sophic } from 'sophic';
 import createRouter from './code/router';
 import { RouterProvider } from 'react-router-dom';
 
 import './index.less';
 
 const subAppName = 'sophicTemplate';
-const hasMaster = handleHasMaster(subAppName); // 是否在主应用中加载
+const hasMaster = Sophic.handleHasMaster(subAppName); // 是否在主应用中加载
 const appState = window.appState; // 主应用中的状态
 
-const root = ReactDOM.createRoot(document.getElementById(subAppName) as HTMLElement);
+let root;
 export function mount({ History, appPubSub }: any) {
-  console.log('end', Date.now());
+  root = ReactDOM.createRoot(document.getElementById(subAppName) as HTMLElement);
   root.render(
     <React.StrictMode>
       <RouterProvider router={createRouter({ appPubSub })} />
@@ -21,7 +21,7 @@ export function mount({ History, appPubSub }: any) {
 }
 
 export function unmount() {
-  root.unmount();
+  root && root.unmount();
 }
 
 if (!hasMaster) {

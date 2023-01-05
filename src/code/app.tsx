@@ -11,7 +11,7 @@ const menus = [
   {
     key: 'subnav',
     icon: React.createElement(NotificationOutlined),
-    label: 'test',
+    label: '子应用',
     children: [
       {
         key: 'test1',
@@ -32,7 +32,7 @@ const SophicTemplate = props => {
     props.appPubSub?.subscribe('sophicTemplate', params => {
       console.log('params', params);
     });
-    console.log('appPubSub', props.appPubSub);
+    // console.log('appPubSub', props.appPubSub);
   }, []);
   return (
     <Layout>
@@ -44,7 +44,7 @@ const SophicTemplate = props => {
           style={{ height: '100%', borderRight: 0 }}
           items={menus}
           onSelect={({ key, keyPath, selectedKeys, domEvent }) => {
-            navigate(`/data/${selectedKeys[0]}`)
+            navigate(`/sub/${selectedKeys[0]}`)
           }}
         />
       </Sider>
