@@ -5,11 +5,11 @@ import App from './app';
 import Test1 from './test1';
 import Test2 from './test2';
 
-const createRouter = props => {
+const createRouter = () => {
   return createBrowserRouter([
     {
       path: '/sub',
-      element: <App appPubSub={props.appPubSub} />,
+      element: <App />,
       errorElement: <ErrorPage />,
       children: [
         {

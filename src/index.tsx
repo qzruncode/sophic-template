@@ -11,11 +11,11 @@ const hasMaster = Sophic.handleHasMaster(subAppName); // 是否在主应用中�
 const appState = window.appState; // 主应用中的状态
 
 let root;
-export function mount({ History, appPubSub }: any) {
+export function mount() {
   root = ReactDOM.createRoot(document.getElementById(subAppName) as HTMLElement);
   root.render(
     <React.StrictMode>
-      <RouterProvider router={createRouter({ appPubSub })} />
+      <RouterProvider router={createRouter()} />
     </React.StrictMode>
   );
 }
@@ -25,7 +25,7 @@ export function unmount() {
 }
 
 if (!hasMaster) {
-  mount({});
+  mount();
 }
 
 window[subAppName] = {

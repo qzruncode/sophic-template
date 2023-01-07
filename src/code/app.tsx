@@ -1,6 +1,6 @@
 import { Outlet, useNavigate } from 'react-router-dom';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NotificationOutlined } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu } from 'antd';
 
@@ -9,7 +9,7 @@ const Content = Layout.Content;
 
 const menus = [
   {
-    key: 'subnav',
+    key: 'sub',
     icon: React.createElement(NotificationOutlined),
     label: '子应用',
     children: [
@@ -27,24 +27,28 @@ const menus = [
 
 const SophicTemplate = props => {
   const navigate = useNavigate();
-  
+  const [selectedKeys, setSelectedKeys] = useState(['sub']);
+
   useEffect(() => {
-    props.appPubSub?.subscribe('sophicTemplate', params => {
-      console.log('params', params);
-    });
-    // console.log('appPubSub', props.appPubSub);
-  }, []);
+    if (location.pathname.includes('test2')) {
+      setSelectedKeys(['sub', 'test2']);
+    } else {
+      setSelectedKeys(['sub', 'test1']);
+    }
+  }, [location]);
+
   return (
     <Layout>
       <Sider width={200}>
         <Menu
           mode="inline"
-          defaultSelectedKeys={['test1']}
-          defaultOpenKeys={['subnav']}
+          selectedKeys={selectedKeys}
+          defaultOpenKeys={['sub']}
           style={{ height: '100%', borderRight: 0 }}
           items={menus}
           onSelect={({ key, keyPath, selectedKeys, domEvent }) => {
-            navigate(`/sub/${selectedKeys[0]}`)
+            navigate(`/sub/${selectedKeys[0]}`);
+            setSelectedKeys(selectedKeys);
           }}
         />
       </Sider>
