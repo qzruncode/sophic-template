@@ -15,7 +15,6 @@ const Test = () => {
     }
   }, []);
   const navigateToMaster = () => {
-    console.log('navigateToMaster', '执行了');
     const sophic = Sophic.getSophic(); // 得到在主应用中创建的Sophic实例
     sophic.appPubSub.publish('sophicTemplate', {
       from: 'sophicTemplate',

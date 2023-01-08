@@ -27,18 +27,10 @@
   },
   "include": [
     "./src/**/*",
-    "./node_modules/@antv/g6"
   ],
   "exclude": [
     "node_modules",
     "build",
     "dist",
-    "scripts",
-    "acceptance-tests",
-    "webpack",
-    "jest",
-    "src/setupTests.ts",
-    "src/store",
-    "src/__tests__"
   ]
 }
