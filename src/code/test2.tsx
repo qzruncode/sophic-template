@@ -9,9 +9,9 @@ const Test = () => {
     const cb = params => {
       console.log(`我是子应用，我接收到${params.from}的消息：`, params.message);
     }
-    sophic.appPubSub.subscribe('sophicTemplate', cb);
+    sophic && sophic.appPubSub.subscribe('sophicTemplate', cb);
     return () => {
-      sophic.appPubSub.unsubscribe('sophicTemplate', cb)
+      sophic && sophic.appPubSub.unsubscribe('sophicTemplate', cb)
     }
   }, []);
   const navigateToMaster = () => {
